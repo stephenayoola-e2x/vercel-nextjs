@@ -1,37 +1,36 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-// This function gets called at build time on server-side.
-// It won't be called on client-side, so you can even do
-// direct database queries. See the "Technical details" section.
-export async function getServerSideProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch('http://api.openweathermap.org/data/2.5/weather?q=london&appid=ce1120e3ba8e41bfa8184eff931c3d8c&units=metric')
-  const data = await res.json()
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+export async function getStaticProps({params}) {
+  const response = await fetch('http://api.openweathermap.org/data/2.5/find?lat=51.48&lon=-0.16&cnt=50&appid=ce1120e3ba8e41bfa8184eff931c3d8c');
+  const data = await response.json();
+  const { list } = data;
+
   return {
     props: {
-      data,
+      data: list,
     },
   }
 }
+
+
 
 export default function Page2({data}) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Page 2</title>
+        <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
-        <h1>Weather in {data.name}</h1>
-        <h2>{data.weather[0].description}, {data.main.temp}°C</h2>
-        <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} />
-      </main>
+        <h1>Pick a location</h1>
+        {data.map((location) => {
+          const sanitisedName = location.name.toLowerCase();
+          const slug = encodeURIComponent(sanitisedName);
+          return <a href={`/location/${slug}`}>{location.name}</a>
+        })}
+      </main> 
     </div>
   )
-}
+} 
