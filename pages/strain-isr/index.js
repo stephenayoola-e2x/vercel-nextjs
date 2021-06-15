@@ -12,7 +12,7 @@ export async function getStaticProps({params}) {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 30, // In seconds
+    revalidate: 10, // In seconds
   }
 }
 
@@ -27,6 +27,7 @@ export default function LocationPage({data}) {
         <main className={styles.main}>
           <h1>Random Strain</h1>
           <h2>{data.strain}, {data.health_benefit}</h2>
+          <p>ISR will recache every 10 seconds, data is stale whilst revalidating</p>
         </main>
       </div>
     )
