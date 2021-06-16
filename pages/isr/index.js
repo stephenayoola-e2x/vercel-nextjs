@@ -26,7 +26,7 @@ export default function LocationPage({data}) {
   
         <main className={styles.main}>
           <h1>Incremental Static Regeneration (ISR) Example</h1>
-          <p>ISR will recache every 10 seconds, data is stale whilst revalidating</p>
+          <p>ISR will recache every 10 seconds, data is stale whilst revalidating.</p>
           <h2>Random Cannabis Strain</h2>
           <h2>{data.strain}</h2>
           <h3>Health Benefit: {data.health_benefit}</h3>
