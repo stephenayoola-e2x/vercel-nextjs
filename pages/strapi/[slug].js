@@ -17,6 +17,7 @@ export async function getServerSideProps({params}) {
 }
 
 export default function StrapiPage({data}) {
+  console.log('data', data)
     return (
       <div className={styles.container}>
         <Head>
