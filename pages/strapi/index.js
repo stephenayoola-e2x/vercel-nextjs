@@ -10,7 +10,7 @@ export default function StrapiPage() {
         </Head>
   
         <main className={styles.main}>
-          test 
+            REACT_APP_STAPI_API_URL: {process.env.REACT_APP_STAPI_API_URL}
         </main>
       </div>
     )
