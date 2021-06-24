@@ -10,7 +10,7 @@ export default function StrapiPage() {
         </Head>
   
         <main className={styles.main}>
-          test
+          test 
         </main>
       </div>
     )
